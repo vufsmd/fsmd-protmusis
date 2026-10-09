@@ -8,9 +8,9 @@ Open `index.html`, scroll to the `<script>` at the bottom and edit the `EVENT` o
 
 ## Registrations
 
-Each registration is emailed to **l.btkvcs@gmail.com** through [FormSubmit](https://formsubmit.co), a free service that needs no account.
+Each registration is emailed to the organizers through [FormSubmit](https://formsubmit.co), a free service that needs no account.
 
-1. After the site is live, submit one test registration. The very first submission sends an **Activate Form** email to that address; click the link in it. (That test registration itself is not delivered.)
+1. After the site is live, submit one test registration. The very first submission sends an **Activate Form** email to the organizers; click the link in it. (That test registration itself is not delivered.)
 2. From then on every registration arrives as an email with a table: team name, captain's email and phone, each member with their status, and notes. Replying to it replies to the captain.
 3. The form uses the FormSubmit alias `10823102b4cc6af3f1ffedba7704de77` instead of the email address, so the address is not visible in the page source.
 
