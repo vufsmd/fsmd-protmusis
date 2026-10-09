@@ -55,7 +55,7 @@ section h2{font-size:clamp(34px,5vw,54px);font-weight:800;letter-spacing:-.03em;
 .intro{font-size:20px;max-width:62ch;margin:0}
 .tint{background:var(--tint)}
 
-.grid4{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:18px;margin-top:40px}
+.grid4{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:18px;margin-top:40px}
 .card{background:var(--paper);border:1px solid var(--line);border-radius:18px;padding:26px}
 .card .label{font-size:12px}
 .card p{margin:10px 0 0;font-size:22px;font-weight:800;color:var(--ink);line-height:1.2}
@@ -127,7 +127,7 @@ footer .wrap{display:flex;flex-wrap:wrap;gap:12px 32px;align-items:center;justif
   .hero .wrap,.reg .wrap{grid-template-columns:1fr}
   .crest{max-width:300px}
   .reg aside{position:static}
-  .grid4{grid-template-columns:repeat(2,minmax(0,1fr))}
+  .grid4{grid-template-columns:1fr}
   .steps{grid-template-columns:repeat(2,minmax(0,1fr))}
   .rules{grid-template-columns:1fr}
   nav ul{display:none}
@@ -185,7 +185,6 @@ footer .wrap{display:flex;flex-wrap:wrap;gap:12px 32px;align-items:center;justif
         <div class="card"><span class="label">Kada</span><p data-ev="dateShort">Spalio 26 d.</p><small><span data-ev="weekday">Pirmadienis</span> · <span data-ev="time">[Laikas]</span></small></div>
         <div class="card"><span class="label">Kur</span><p data-ev="place">[Vieta]</p><small data-ev="address">[Adresas]</small></div>
         <div class="card"><span class="label">Komandos</span><p>4–5 žaidėjai</p><small>Bent vienas doktorantas ar dėstytojas</small></div>
-        <div class="card"><span class="label">Dalyvavimas</span><p data-ev="fee">[Kaina]</p><small data-ev="deadline">Registracija iki [data]</small></div>
       </div>
     </div>
   </section>
@@ -328,7 +327,6 @@ const EVENT = {
   time: "[Laikas]",
   place: "[Vieta]",
   address: "[Adresas]",
-  fee: "[Kaina]",
   deadline: "Registracija iki [data]",
   contactEmail: "",   // shown as "Susisiekti" in the footer when filled in
 };
