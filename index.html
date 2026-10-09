@@ -3,106 +3,130 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Protmušis · VU FSMD</title>
-<meta name="description" content="VU FSMD protmušis – filosofinis protų mūšis komandoms. Registruokitės!">
+<title>Protmušis · VU FSMD · Spalio 26 d.</title>
+<meta name="description" content="VU FSMD protmušis – 2026 m. spalio 26 d. Filosofinis protų mūšis 4–5 žaidėjų komandoms. Registruokitės!">
 <meta property="og:title" content="Protmušis · VU FSMD">
-<meta property="og:description" content="Filosofinis protų mūšis komandoms. Registruokitės!">
+<meta property="og:description" content="2026 m. spalio 26 d. Filosofinis protų mūšis 4–5 žaidėjų komandoms. Registruokitės!">
+<meta property="og:image" content="fsmd-herbas.jpg">
 <link rel="icon" href="logo.svg" type="image/svg+xml">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,400;12..96,600;12..96,800&family=DM+Mono:wght@500&display=swap">
 <style>
 :root{
-  --burg:#78003F; --burg-d:#5c0030; --pink:#E64164; --ink:#414141; --grey:#DCDCDC; --tint:#F4F4F4; --white:#fff;
+  --ink:#161616; --text:#2B2B2B; --muted:#5C5C5C; --line:#D6D6D2; --tint:#F3F3F1; --paper:#FFFFFF;
+  --err:#9B1C1C; --err-bg:#FBEDED; --ok-bg:#EDF4EE; --ok:#1F5A2E;
   --sans:'Bricolage Grotesque', system-ui, sans-serif; --mono:'DM Mono', ui-monospace, monospace;
 }
 *{box-sizing:border-box}
 html{scroll-behavior:smooth}
-body{margin:0;font-family:var(--sans);color:var(--ink);background:var(--white);font-size:18px;line-height:1.55}
-a{color:var(--burg)}
-a:hover{color:var(--ink)}
-.wrap{max-width:1080px;margin:0 auto;padding:0 24px}
-.label{font-family:var(--mono);font-size:14px;letter-spacing:.22em;text-transform:uppercase;font-weight:500}
-.dot{display:inline-block;width:.42em;height:.42em;border-radius:50%;background:var(--pink);vertical-align:middle}
+body{margin:0;font-family:var(--sans);color:var(--text);background:var(--paper);font-size:18px;line-height:1.55}
+a{color:var(--ink)}
+a:hover{color:var(--muted)}
+.wrap{max-width:1100px;margin:0 auto;padding:0 24px}
+.label{font-family:var(--mono);font-size:13px;letter-spacing:.22em;text-transform:uppercase;font-weight:500;color:var(--muted)}
+.sr{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap}
 
 /* nav */
-nav{position:absolute;top:0;left:0;right:0;z-index:2}
-nav .wrap{display:flex;align-items:center;justify-content:space-between;gap:16px;height:72px}
-nav .brand{color:#fff;text-decoration:none;font-family:var(--mono);font-size:15px;letter-spacing:.2em;display:flex;align-items:center;gap:10px}
-nav ul{list-style:none;margin:0;padding:0;display:flex;gap:24px}
-nav ul a{color:#fff;text-decoration:none;font-weight:600;font-size:16px}
-nav ul a:hover{color:var(--grey)}
+nav{border-bottom:1px solid var(--line);background:var(--paper)}
+nav .wrap{display:flex;align-items:center;justify-content:space-between;gap:16px;height:68px}
+nav .brand{color:var(--ink);text-decoration:none;font-weight:800;font-size:18px;letter-spacing:.02em;display:flex;align-items:center;gap:10px}
+nav ul{list-style:none;margin:0;padding:0;display:flex;gap:28px}
+nav ul a{color:var(--text);text-decoration:none;font-weight:600;font-size:16px}
+nav ul a:hover{color:var(--muted)}
 
 /* hero */
-.hero{background:var(--burg);color:#fff;padding:128px 0 96px;position:relative;overflow:hidden}
-.hero .wrap{display:grid;grid-template-columns:minmax(0,1.4fr) minmax(0,1fr);gap:48px;align-items:center}
-.hero h1{font-size:clamp(56px,10vw,120px);font-weight:800;letter-spacing:-.035em;line-height:.9;margin:16px 0 20px}
-.hero .lead{font-size:clamp(19px,2.2vw,23px);max-width:34ch;margin:0 0 32px;color:#F3E6EC}
-.hero .label{color:var(--grey)}
-.facts{display:flex;flex-wrap:wrap;gap:12px;margin:0 0 36px;padding:0;list-style:none}
-.facts li{border:1.5px solid rgba(255,255,255,.35);border-radius:999px;padding:8px 18px;font-weight:600;font-size:16px}
-.btn{display:inline-flex;align-items:center;justify-content:center;gap:10px;min-height:52px;padding:0 28px;border-radius:999px;font-family:var(--sans);font-weight:800;font-size:18px;text-decoration:none;border:0;cursor:pointer}
-.btn-light{background:#fff;color:var(--burg)}
-.btn-light:hover{background:var(--grey);color:var(--burg)}
-.btn-dark{background:var(--burg);color:#fff}
-.btn-dark:hover{background:var(--burg-d);color:#fff}
-.btn:focus-visible,input:focus-visible,select:focus-visible,textarea:focus-visible,a:focus-visible{outline:3px solid var(--pink);outline-offset:3px}
-.hero-mark{width:100%;max-width:320px;justify-self:center}
+.hero{padding:72px 0 88px}
+.hero .wrap{display:grid;grid-template-columns:minmax(0,1.35fr) minmax(0,1fr);gap:56px;align-items:center}
+.hero h1{font-size:clamp(46px,7.4vw,92px);font-weight:800;letter-spacing:-.035em;line-height:.9;margin:16px 0 22px;color:var(--ink)}
+.hero .lead{font-size:clamp(19px,2.2vw,22px);max-width:36ch;margin:0 0 30px}
+.facts{display:flex;flex-wrap:wrap;gap:10px;margin:0 0 34px;padding:0;list-style:none}
+.facts li{border:1.5px solid var(--line);border-radius:999px;padding:8px 18px;font-weight:600;font-size:16px;color:var(--ink)}
+.facts li.strong{background:var(--ink);border-color:var(--ink);color:#fff}
+.btn{display:inline-flex;align-items:center;justify-content:center;min-height:52px;padding:0 28px;border-radius:999px;font-family:var(--sans);font-weight:800;font-size:18px;text-decoration:none;border:0;cursor:pointer;background:var(--ink);color:#fff}
+.btn:hover{background:#3a3a3a;color:#fff}
+.btn[disabled]{opacity:.6;cursor:wait}
+.btn:focus-visible,input:focus-visible,select:focus-visible,textarea:focus-visible,a:focus-visible{outline:3px solid var(--ink);outline-offset:3px}
+.crest{width:100%;max-width:420px;height:auto;justify-self:center;display:block}
 
 /* sections */
-section{padding:96px 0}
-section h2{font-size:clamp(36px,5vw,56px);font-weight:800;letter-spacing:-.03em;line-height:1;color:var(--burg);margin:12px 0 24px}
-.label.burg{color:var(--burg)}
-.intro{font-size:21px;max-width:60ch}
+section{padding:88px 0;border-top:1px solid var(--line)}
+section h2{font-size:clamp(34px,5vw,54px);font-weight:800;letter-spacing:-.03em;line-height:1.02;color:var(--ink);margin:12px 0 22px}
+.intro{font-size:20px;max-width:62ch;margin:0}
+.tint{background:var(--tint)}
 
-.info{background:var(--tint)}
-.grid4{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:20px;margin-top:40px}
-.card{background:#fff;border-radius:20px;padding:28px}
-.card .label{color:var(--ink);font-size:12px}
-.card p{margin:10px 0 0;font-size:22px;font-weight:800;color:var(--burg);line-height:1.2}
-.card small{display:block;margin-top:6px;font-size:15px;color:var(--ink);font-weight:400}
+.grid4{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:18px;margin-top:40px}
+.card{background:var(--paper);border:1px solid var(--line);border-radius:18px;padding:26px}
+.card .label{font-size:12px}
+.card p{margin:10px 0 0;font-size:22px;font-weight:800;color:var(--ink);line-height:1.2}
+.card small{display:block;margin-top:6px;font-size:15px;color:var(--muted)}
 
-.steps{display:grid;grid-template-columns:repeat(5,minmax(0,1fr));gap:16px;margin:40px 0 0;padding:0;list-style:none}
-.steps li{border:1.5px solid var(--grey);border-radius:20px;padding:24px 20px;min-height:150px;display:flex;flex-direction:column;gap:14px}
-.steps .num{width:44px;height:44px;border-radius:50%;background:var(--burg);color:#fff;display:flex;align-items:center;justify-content:center;font-weight:800;font-size:20px}
-.steps li:last-child .num{background:var(--pink)}
-.steps b{color:var(--burg);font-size:19px;line-height:1.25}
+.steps{display:grid;grid-template-columns:repeat(5,minmax(0,1fr));gap:14px;margin:40px 0 0;padding:0;list-style:none}
+.steps li{border:1.5px solid var(--line);border-radius:18px;padding:22px 20px;min-height:140px;display:flex;flex-direction:column;gap:14px}
+.num{width:42px;height:42px;border-radius:50%;background:var(--ink);color:#fff;display:flex;align-items:center;justify-content:center;font-weight:800;font-size:19px;flex:none}
+.steps b{color:var(--ink);font-size:19px;line-height:1.25}
 
-.rules{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:20px;margin:40px 0 0;padding:0;list-style:none;counter-reset:r}
-.rules li{background:var(--tint);border-radius:20px;padding:28px;counter-increment:r}
-.rules li::before{content:counter(r);display:flex;align-items:center;justify-content:center;width:40px;height:40px;border-radius:50%;background:var(--pink);color:#fff;font-weight:800;margin-bottom:14px}
-.rules b{display:block;color:var(--burg);font-size:20px;margin-bottom:4px}
+.rules{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:18px;margin:40px 0 0;padding:0;list-style:none;counter-reset:r}
+.rules li{background:var(--paper);border:1px solid var(--line);border-radius:18px;padding:26px;counter-increment:r}
+.rules li::before{content:counter(r);display:flex;align-items:center;justify-content:center;width:38px;height:38px;border-radius:50%;background:var(--ink);color:#fff;font-weight:800;margin-bottom:14px}
+.rules b{display:block;color:var(--ink);font-size:20px;margin-bottom:4px}
+.rules li.key{background:var(--ink);color:#EDEDED;border-color:var(--ink)}
+.rules li.key b{color:#fff}
+.rules li.key::before{background:#fff;color:var(--ink)}
 
 /* registration */
-.reg{background:var(--burg);color:#fff}
-.reg h2{color:#fff}
-.reg .label{color:var(--grey)}
-.reg .wrap{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1.3fr);gap:56px;align-items:start}
-.reg .intro{color:#F3E6EC;font-size:19px}
-form{background:#fff;color:var(--ink);border-radius:24px;padding:36px;display:grid;gap:20px}
-.row{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:20px}
+.reg .wrap{display:grid;grid-template-columns:minmax(0,.85fr) minmax(0,1.4fr);gap:56px;align-items:start}
+.reg aside{position:sticky;top:24px}
+.composition{margin:28px 0 0;padding:24px;border:1.5px solid var(--ink);border-radius:18px;background:var(--paper)}
+.composition h3{margin:0 0 12px;font-size:20px;color:var(--ink)}
+.composition ul{margin:0;padding:0 0 0 20px}
+.composition li{margin:4px 0}
+form{background:var(--paper);border:1px solid var(--line);border-radius:22px;padding:34px;display:grid;gap:22px}
+fieldset{border:0;margin:0;padding:0;min-width:0}
+legend{font-weight:800;font-size:20px;color:var(--ink);margin-bottom:6px;padding:0}
+.row{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:18px}
 label{display:block;font-weight:600;font-size:16px;margin-bottom:6px;color:var(--ink)}
-label .req{color:var(--burg)}
-input,select,textarea{width:100%;font:inherit;font-size:17px;color:var(--ink);background:#fff;border:1.5px solid #9a9a9a;border-radius:12px;padding:12px 14px;min-height:50px}
-textarea{min-height:110px;resize:vertical}
+.req{color:var(--err)}
+input,select,textarea{width:100%;font:inherit;font-size:17px;color:var(--ink);background:#fff;border:1.5px solid #8F8F8F;border-radius:12px;padding:11px 14px;min-height:50px}
+textarea{min-height:100px;resize:vertical}
 input:hover,select:hover,textarea:hover{border-color:var(--ink)}
-.hint{font-size:14px;color:#5f5f5f;margin-top:6px}
-.check{display:flex;gap:12px;align-items:flex-start;font-weight:400;font-size:15px}
-.check input{width:22px;height:22px;min-height:0;flex:none;margin-top:2px;accent-color:var(--burg)}
+.hint{font-size:14px;color:var(--muted);margin:4px 0 0}
+.members{display:grid;gap:12px;margin-top:10px}
+.member{display:grid;grid-template-columns:42px minmax(0,1.5fr) minmax(0,1fr);gap:12px;align-items:center}
+.member .num{width:36px;height:36px;font-size:16px}
+.member.optional .num{background:var(--paper);color:var(--ink);border:1.5px dashed #8F8F8F}
+.member-head{display:grid;grid-template-columns:42px minmax(0,1.5fr) minmax(0,1fr);gap:12px;font-size:14px;font-weight:600;color:var(--muted)}
+.checks{list-style:none;margin:6px 0 0;padding:16px 18px;background:var(--tint);border-radius:14px;display:grid;gap:8px}
+.checks li{display:flex;gap:10px;align-items:center;font-size:16px;color:var(--muted)}
+.checks svg{flex:none}
+.checks .icon-ok{display:none}
+.checks li.met{color:var(--ink);font-weight:600}
+.checks li.met .icon-ok{display:block}
+.checks li.met .icon-no{display:none}
+.checks li.bad{color:var(--err);font-weight:600}
+.check{display:flex;gap:12px;align-items:flex-start;font-weight:400;font-size:15px;color:var(--text)}
+.check input{width:22px;height:22px;min-height:0;flex:none;margin-top:2px;accent-color:var(--ink)}
 .status{border-radius:12px;padding:14px 16px;font-weight:600;font-size:16px}
-.status.ok{background:#E8F3EC;color:#1d5a32}
-.status.err{background:#FBE7EC;color:#8a1233}
+.status.ok{background:var(--ok-bg);color:var(--ok)}
+.status.err{background:var(--err-bg);color:var(--err)}
 .status.info{background:var(--tint);color:var(--ink)}
+.honey{display:none}
 [hidden]{display:none!important}
 
-footer{padding:40px 0;background:#fff}
-footer .wrap{display:flex;flex-wrap:wrap;gap:16px 32px;align-items:center;justify-content:space-between}
-footer .brand{display:flex;align-items:center;gap:12px;font-family:var(--mono);letter-spacing:.2em;font-size:14px;color:var(--ink)}
-footer .links{display:flex;flex-wrap:wrap;gap:20px;font-weight:600}
+/* organizers + footer */
+.org .logos{display:flex;flex-wrap:wrap;gap:24px;margin-top:32px;align-items:stretch}
+.org .logo-box{flex:1 1 300px;border:1px solid var(--line);border-radius:18px;padding:28px;display:flex;align-items:center;gap:22px;min-height:150px}
+.org .logo-box img{display:block;height:auto}
+.org .logo-box p{margin:0;font-weight:600;color:var(--ink)}
+.org .logo-box small{display:block;font-weight:400;color:var(--muted);font-size:15px}
+.fallback{font-weight:800;font-size:22px;line-height:1.2;color:var(--ink)}
+footer{padding:32px 0;border-top:1px solid var(--line);font-size:15px;color:var(--muted)}
+footer .wrap{display:flex;flex-wrap:wrap;gap:12px 32px;align-items:center;justify-content:space-between}
 
 @media (max-width:900px){
   .hero .wrap,.reg .wrap{grid-template-columns:1fr}
-  .hero-mark{max-width:200px;justify-self:start;order:-1}
+  .crest{max-width:300px}
+  .reg aside{position:static}
   .grid4{grid-template-columns:repeat(2,minmax(0,1fr))}
   .steps{grid-template-columns:repeat(2,minmax(0,1fr))}
   .rules{grid-template-columns:1fr}
@@ -110,10 +134,13 @@ footer .links{display:flex;flex-wrap:wrap;gap:20px;font-weight:600}
 }
 @media (max-width:560px){
   body{font-size:17px}
-  section{padding:72px 0}
-  .hero{padding:104px 0 72px}
+  section{padding:64px 0}
+  .hero{padding:48px 0 64px}
   .grid4,.steps,.row{grid-template-columns:1fr}
-  form{padding:24px}
+  form{padding:22px}
+  .member,.member-head{grid-template-columns:36px minmax(0,1fr)}
+  .member select{grid-column:2}
+  .member-head span:last-child{display:none}
 }
 </style>
 </head>
@@ -121,7 +148,7 @@ footer .links{display:flex;flex-wrap:wrap;gap:20px;font-weight:600}
 
 <nav aria-label="Pagrindinė navigacija">
   <div class="wrap">
-    <a class="brand" href="#top">VU <span class="dot"></span> FSMD</a>
+    <a class="brand" href="#top"><img src="logo.svg" alt="" width="22" height="26"> PROTMUŠIS</a>
     <ul>
       <li><a href="#info">Informacija</a></li>
       <li><a href="#eiga">Eiga</a></li>
@@ -136,41 +163,28 @@ footer .links{display:flex;flex-wrap:wrap;gap:20px;font-weight:600}
     <div>
       <span class="label">VU FSMD kviečia</span>
       <h1>PROTMUŠIS</h1>
-      <p class="lead">Filosofinis protų mūšis: suburkite komandą, pasitikrinkite erudiciją ir išbandykite savo smegenis.</p>
+      <p class="lead">Filosofinis protų mūšis: suburkite komandą su doktorantu ar dėstytoju, pasitikrinkite erudiciją ir išbandykite savo smegenis.</p>
       <ul class="facts">
-        <li data-ev="date">[Data]</li>
+        <li class="strong" data-ev="date">2026 m. spalio 26 d.</li>
         <li data-ev="time">[Laikas]</li>
         <li data-ev="place">[Vieta]</li>
       </ul>
-      <a class="btn btn-light" href="#registracija">Registruoti komandą</a>
+      <a class="btn" href="#registracija">Registruoti komandą</a>
     </div>
-    <svg class="hero-mark" viewBox="0 0 200 240" role="img" aria-label="Protmušio ženklas: smegenys, sudarančios klaustuką">
-      <g fill="#fff">
-        <circle cx="60" cy="70" r="34"/><circle cx="100" cy="52" r="38"/><circle cx="142" cy="68" r="34"/>
-        <circle cx="160" cy="104" r="26"/><circle cx="40" cy="106" r="26"/><circle cx="70" cy="120" r="30"/>
-        <circle cx="128" cy="118" r="30"/><circle cx="100" cy="110" r="34"/>
-      </g>
-      <path d="M120 130 Q122 158 100 166 L100 178" fill="none" stroke="#fff" stroke-width="28" stroke-linecap="round"/>
-      <g fill="none" stroke="#78003F" stroke-width="5" stroke-linecap="round">
-        <path d="M100 30 Q92 50 102 66 Q112 84 100 100"/><path d="M56 52 Q72 60 66 78"/>
-        <path d="M138 46 Q128 62 144 74"/><path d="M44 100 Q60 96 64 112"/>
-        <path d="M150 96 Q136 104 140 120"/><path d="M84 122 Q100 132 116 124"/>
-      </g>
-      <circle cx="100" cy="220" r="15" fill="#E64164"/>
-    </svg>
+    <img class="crest" src="fsmd-herbas.jpg" width="795" height="900" alt="VU FSMD herbas: saulė skyde su laurų šakelėmis ir užrašu „Scio nihil scire“">
   </div>
 </header>
 
 <main>
-  <section class="info" id="info">
+  <section class="tint" id="info">
     <div class="wrap">
-      <span class="label burg">Informacija</span>
+      <span class="label">Informacija</span>
       <h2>Kas, kada ir kur</h2>
-      <p class="intro">Protmušis – komandinis žinių žaidimas, kurį organizuoja Vilniaus universiteto filosofijos studentų draugija. Laukiami visi smalsūs, ne tik filosofai.</p>
+      <p class="intro">Protmušis – komandinis žinių žaidimas, kurį organizuoja VU filosofijos studentų draugija FSMD. Studentai žaidžia kartu su doktorantais ir dėstytojais.</p>
       <div class="grid4">
-        <div class="card"><span class="label">Kada</span><p data-ev="date">[Data]</p><small data-ev="time">[Laikas]</small></div>
+        <div class="card"><span class="label">Kada</span><p data-ev="dateShort">Spalio 26 d.</p><small><span data-ev="weekday">Pirmadienis</span> · <span data-ev="time">[Laikas]</span></small></div>
         <div class="card"><span class="label">Kur</span><p data-ev="place">[Vieta]</p><small data-ev="address">[Adresas]</small></div>
-        <div class="card"><span class="label">Komandos</span><p data-ev="teamSize">Iki 6 žaidėjų</p><small data-ev="teamsMax">[Vietų skaičius ribotas]</small></div>
+        <div class="card"><span class="label">Komandos</span><p>4–5 žaidėjai</p><small>Bent vienas doktorantas ar dėstytojas</small></div>
         <div class="card"><span class="label">Dalyvavimas</span><p data-ev="fee">[Kaina]</p><small data-ev="deadline">Registracija iki [data]</small></div>
       </div>
     </div>
@@ -178,7 +192,7 @@ footer .links{display:flex;flex-wrap:wrap;gap:20px;font-weight:600}
 
   <section id="eiga">
     <div class="wrap">
-      <span class="label burg">Eiga</span>
+      <span class="label">Eiga</span>
       <h2>Penki teminiai blokai</h2>
       <p class="intro">Laukia penki skirtingų temų blokai. Temos paaiškės tik žaidimo metu – pasiruoškite nustebti.</p>
       <ol class="steps">
@@ -191,15 +205,15 @@ footer .links{display:flex;flex-wrap:wrap;gap:20px;font-weight:600}
     </div>
   </section>
 
-  <section id="taisykles" style="padding-top:0">
+  <section class="tint" id="taisykles">
     <div class="wrap">
-      <span class="label burg">Taisyklės</span>
+      <span class="label">Taisyklės</span>
       <h2>Žaidžiame sąžiningai</h2>
       <ol class="rules">
-        <li><b>Komandos</b>Iki 6 žaidėjų vienoje komandoje.</li>
+        <li><b>Komandos dydis</b>Komandoje 4 arba 5 žaidėjai.</li>
+        <li class="key"><b>Komandos sudėtis</b>Bent vienas narys – doktorantas arba dėstytojas, bet ne daugiau kaip vienas dėstytojas.</li>
         <li><b>Be telefonų</b>Jokio googlinimo – tik jūsų smegenys.</li>
-        <li><b>Atsakymų lapai</b>Atsakymus atiduodate po kiekvieno bloko.</li>
-        <li><b>Taškai</b>Taškas už kiekvieną teisingą atsakymą.</li>
+        <li><b>Taškai</b>Atsakymus atiduodate po kiekvieno bloko, taškas už kiekvieną teisingą.</li>
         <li><b>Ginčai</b>Galutinį sprendimą priima vedėjas ir teisėjas.</li>
         <li><b>Lygiosios</b>Papildomas klausimas – laimi arčiausiai tiesos.</li>
       </ol>
@@ -208,70 +222,98 @@ footer .links{display:flex;flex-wrap:wrap;gap:20px;font-weight:600}
 
   <section class="reg" id="registracija">
     <div class="wrap">
-      <div>
+      <aside>
         <span class="label">Registracija</span>
         <h2>Registruokite komandą</h2>
         <p class="intro">Komandą registruoja kapitonas – užtenka vienos formos visai komandai.</p>
-        <p class="intro" data-ev="deadline">Registracija iki [data]</p>
-      </div>
+        <div class="composition">
+          <h3>Komandos sudėties reikalavimai</h3>
+          <ul>
+            <li>4 arba 5 žaidėjai</li>
+            <li>Bent vienas doktorantas arba dėstytojas</li>
+            <li>Ne daugiau kaip vienas dėstytojas</li>
+          </ul>
+        </div>
+        <p class="hint" style="margin-top:16px" data-ev="deadline">Registracija iki [data]</p>
+      </aside>
 
       <form id="regForm" novalidate>
         <div>
-          <label for="team">Komandos pavadinimas <span class="req">*</span></label>
+          <label for="team">Komandos pavadinimas <span class="req" aria-hidden="true">*</span></label>
           <input id="team" name="team" required autocomplete="off" maxlength="80">
         </div>
         <div class="row">
           <div>
-            <label for="captain">Kapitono vardas ir pavardė <span class="req">*</span></label>
-            <input id="captain" name="captain" required autocomplete="name" maxlength="80">
-          </div>
-          <div>
-            <label for="email">El. paštas <span class="req">*</span></label>
+            <label for="email">Kapitono el. paštas <span class="req" aria-hidden="true">*</span></label>
             <input id="email" name="email" type="email" required autocomplete="email">
           </div>
-        </div>
-        <div class="row">
           <div>
-            <label for="phone">Telefonas</label>
+            <label for="phone">Kapitono telefonas</label>
             <input id="phone" name="phone" type="tel" autocomplete="tel">
           </div>
-          <div>
-            <label for="size">Žaidėjų skaičius <span class="req">*</span></label>
-            <select id="size" name="size" required>
-              <option value="">Pasirinkite</option>
-              <option>1</option><option>2</option><option>3</option>
-              <option>4</option><option>5</option><option>6</option>
-            </select>
+        </div>
+
+        <fieldset>
+          <legend>Komandos nariai</legend>
+          <p class="hint">Pirmasis narys – kapitonas. Penktasis narys neprivalomas.</p>
+          <div class="members" id="members">
+            <div class="member-head" aria-hidden="true"><span></span><span>Vardas ir pavardė</span><span>Statusas</span></div>
           </div>
-        </div>
-        <div>
-          <label for="members">Komandos nariai</label>
-          <textarea id="members" name="members" maxlength="600"></textarea>
-          <p class="hint">Vardai, po vieną eilutėje.</p>
-        </div>
+          <ul class="checks" id="checks" aria-live="polite">
+            <li data-rule="size">
+              <svg class="icon-ok" width="20" height="20" viewBox="0 0 20 20" aria-hidden="true"><circle cx="10" cy="10" r="9" fill="currentColor"/><path d="M6 10.5l2.6 2.5L14 7.5" fill="none" stroke="#fff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+              <svg class="icon-no" width="20" height="20" viewBox="0 0 20 20" aria-hidden="true"><circle cx="10" cy="10" r="8.25" fill="none" stroke="currentColor" stroke-width="1.5"/></svg>
+              <span>4 arba 5 žaidėjai <span class="sr" data-state></span></span>
+            </li>
+            <li data-rule="mix">
+              <svg class="icon-ok" width="20" height="20" viewBox="0 0 20 20" aria-hidden="true"><circle cx="10" cy="10" r="9" fill="currentColor"/><path d="M6 10.5l2.6 2.5L14 7.5" fill="none" stroke="#fff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+              <svg class="icon-no" width="20" height="20" viewBox="0 0 20 20" aria-hidden="true"><circle cx="10" cy="10" r="8.25" fill="none" stroke="currentColor" stroke-width="1.5"/></svg>
+              <span>Bent vienas doktorantas arba dėstytojas <span class="sr" data-state></span></span>
+            </li>
+            <li data-rule="lect">
+              <svg class="icon-ok" width="20" height="20" viewBox="0 0 20 20" aria-hidden="true"><circle cx="10" cy="10" r="9" fill="currentColor"/><path d="M6 10.5l2.6 2.5L14 7.5" fill="none" stroke="#fff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+              <svg class="icon-no" width="20" height="20" viewBox="0 0 20 20" aria-hidden="true"><circle cx="10" cy="10" r="8.25" fill="none" stroke="currentColor" stroke-width="1.5"/></svg>
+              <span>Ne daugiau kaip vienas dėstytojas <span class="sr" data-state></span></span>
+            </li>
+          </ul>
+        </fieldset>
+
         <div>
           <label for="note">Klausimai ar pastabos</label>
           <textarea id="note" name="note" maxlength="600"></textarea>
         </div>
+        <input class="honey" type="text" name="_honey" tabindex="-1" autocomplete="off" aria-hidden="true">
         <label class="check" for="consent">
           <input id="consent" name="consent" type="checkbox" required>
-          <span>Sutinku, kad mano duomenys būtų naudojami tik šio renginio organizavimui. <span class="req">*</span></span>
+          <span>Sutinku, kad komandos duomenys būtų naudojami tik šio renginio organizavimui. <span class="req" aria-hidden="true">*</span></span>
         </label>
         <div class="status" id="status" role="status" aria-live="polite" hidden></div>
-        <div><button class="btn btn-dark" type="submit" id="submitBtn">Registruotis</button></div>
+        <div><button class="btn" type="submit" id="submitBtn">Registruotis</button></div>
       </form>
+    </div>
+  </section>
+
+  <section class="org" id="organizatoriai">
+    <div class="wrap">
+      <span class="label">Organizatoriai</span>
+      <div class="logos">
+        <div class="logo-box">
+          <img src="fsmd-herbas.jpg" alt="VU FSMD herbas" width="88" height="100">
+          <p>VU FSMD<small>Filosofijos studentų draugija</small></p>
+        </div>
+        <div class="logo-box" id="facultyBox">
+          <img src="vu-filosofijos-fakultetas.png" alt="Vilniaus universitetas, Filosofijos fakultetas" style="max-width:100%;max-height:110px;width:auto" onerror="this.hidden=true;document.getElementById('facultyFallback').hidden=false">
+          <div class="fallback" id="facultyFallback" hidden>Vilniaus universitetas<br>Filosofijos fakultetas</div>
+        </div>
+      </div>
     </div>
   </section>
 </main>
 
 <footer>
   <div class="wrap">
-    <div class="brand"><img src="logo.svg" alt="" width="28" height="34"> VU <span class="dot"></span> FSMD · PROTMUŠIS</div>
-    <div class="links">
-      <a data-ev-href="contactEmail" href="#">Susisiekti</a>
-      <a data-ev-href="facebook" href="#" hidden>Facebook</a>
-      <a data-ev-href="instagram" href="#" hidden>Instagram</a>
-    </div>
+    <span>VU FSMD · Protmušis · <span data-ev="date">2026 m. spalio 26 d.</span></span>
+    <a data-ev-href="contactEmail" href="#" hidden>Susisiekti</a>
   </div>
 </footer>
 
@@ -280,78 +322,138 @@ footer .links{display:flex;flex-wrap:wrap;gap:20px;font-weight:600}
    EVENT DETAILS — edit these and the whole page updates.
    ====================================================================== */
 const EVENT = {
-  date: "[Data]",
+  date: "2026 m. spalio 26 d.",
+  dateShort: "Spalio 26 d.",
+  weekday: "Pirmadienis",
   time: "[Laikas]",
   place: "[Vieta]",
   address: "[Adresas]",
-  teamSize: "Iki 6 žaidėjų",
-  teamsMax: "[Vietų skaičius ribotas]",
   fee: "[Kaina]",
   deadline: "Registracija iki [data]",
-  contactEmail: "",   // e.g. "fsmd@example.com"
-  facebook: "",       // full URL
-  instagram: "",      // full URL
+  contactEmail: "",   // shown as "Susisiekti" in the footer when filled in
 };
 
 /* ======================================================================
-   GOOGLE FORM — paste your form's formResponse URL and entry IDs.
-   See README.md for how to find them. Until `action` is set, the form
-   shows a "registration opens soon" message instead of submitting.
+   REGISTRATIONS are emailed via FormSubmit (formsubmit.co).
+   The very first submission sends an "Activate Form" email to this
+   address — click it once. FormSubmit then also sends a random alias;
+   replace the address below with it to hide the email from the source.
    ====================================================================== */
-const GOOGLE_FORM = {
-  action: "",               // https://docs.google.com/forms/d/e/XXXX/formResponse
-  fields: {
-    team: "entry.000000001",
-    captain: "entry.000000002",
-    email: "entry.000000003",
-    phone: "entry.000000004",
-    size: "entry.000000005",
-    members: "entry.000000006",
-    note: "entry.000000007",
-  },
-};
+const FORM_ENDPOINT = "https://formsubmit.co/ajax/l.btkvcs@gmail.com";
+
+const ROLES = { student: "Studentas (-ė)", phd: "Doktorantas (-ė)", lecturer: "Dėstytojas (-a)", other: "Kita" };
+const MAX = 5, REQUIRED = 4;
 
 // Fill event details
-document.querySelectorAll("[data-ev]").forEach(el => {
-  const v = EVENT[el.dataset.ev];
-  if (v) el.textContent = v;
-});
+document.querySelectorAll("[data-ev]").forEach(el => { const v = EVENT[el.dataset.ev]; if (v) el.textContent = v; });
 document.querySelectorAll("[data-ev-href]").forEach(el => {
-  const key = el.dataset.evHref, v = EVENT[key];
-  if (!v) { el.hidden = true; return; }
-  el.href = key === "contactEmail" ? "mailto:" + v : v;
-  el.hidden = false;
-  if (key !== "contactEmail") { el.target = "_blank"; el.rel = "noopener"; }
+  const v = EVENT[el.dataset.evHref];
+  if (v) { el.href = "mailto:" + v; el.hidden = false; }
 });
 
-// Registration
+// Build member rows
+const membersEl = document.getElementById("members");
+for (let i = 1; i <= MAX; i++) {
+  const req = i <= REQUIRED;
+  const row = document.createElement("div");
+  row.className = "member" + (req ? "" : " optional");
+  const who = i === 1 ? "Kapitonas" : i + " narys";
+  row.innerHTML = `
+    <span class="num" aria-hidden="true">${i}</span>
+    <div><label class="sr" for="m${i}name">${who}: vardas ir pavardė${req ? "" : " (neprivaloma)"}</label>
+      <input id="m${i}name" name="m${i}name" ${req ? "required" : ""} autocomplete="off" maxlength="80" placeholder="${i === 1 ? "Kapitonas" : req ? "Vardas Pavardė" : "Neprivaloma"}"></div>
+    <div><label class="sr" for="m${i}role">${who}: statusas</label>
+      <select id="m${i}role" name="m${i}role" ${req ? "required" : ""}>
+        <option value="">Statusas</option>
+        ${Object.entries(ROLES).map(([v, t]) => `<option value="${v}">${t}</option>`).join("")}
+      </select></div>`;
+  membersEl.appendChild(row);
+}
+
 const form = document.getElementById("regForm");
 const statusEl = document.getElementById("status");
 const btn = document.getElementById("submitBtn");
-function show(kind, msg) { statusEl.className = "status " + kind; statusEl.textContent = msg; statusEl.hidden = false; }
+const show = (kind, msg) => { statusEl.className = "status " + kind; statusEl.textContent = msg; statusEl.hidden = false; };
+
+function members() {
+  const list = [];
+  for (let i = 1; i <= MAX; i++) {
+    list.push({ i, name: form.elements["m" + i + "name"].value.trim(), role: form.elements["m" + i + "role"].value });
+  }
+  return list;
+}
+function evaluate(markBad) {
+  const filled = members().filter(m => m.name);
+  const lect = filled.filter(m => m.role === "lecturer").length;
+  const res = {
+    size: filled.length >= 4 && filled.length <= 5,
+    mix: filled.some(m => m.role === "phd" || m.role === "lecturer"),
+    lect: lect <= 1,
+  };
+  document.querySelectorAll("#checks li").forEach(li => {
+    const ok = res[li.dataset.rule];
+    li.classList.toggle("met", ok);
+    li.classList.toggle("bad", !ok && markBad);
+    li.querySelector("[data-state]").textContent = ok ? "– įvykdyta" : "– neįvykdyta";
+  });
+  return res;
+}
+form.addEventListener("input", () => evaluate(false));
+form.addEventListener("change", () => evaluate(false));
+evaluate(false);
 
 form.addEventListener("submit", async (e) => {
   e.preventDefault();
+  statusEl.hidden = true;
   if (!form.checkValidity()) {
     const bad = form.querySelector(":invalid");
-    show("err", "Užpildykite visus privalomus laukus (*) ir pažymėkite sutikimą.");
+    show("err", "Užpildykite visus privalomus laukus, nurodykite kiekvieno nario statusą ir pažymėkite sutikimą.");
     if (bad) bad.focus();
     return;
   }
-  if (!GOOGLE_FORM.action) {
-    show("info", "Registracija atsidarys netrukus – sekite naujienas!");
+  const m5 = members()[4];
+  if (!!m5.name !== !!m5.role) {
+    show("err", "Penktajam nariui nurodykite ir vardą, ir statusą – arba palikite abu laukus tuščius.");
+    form.elements[m5.name ? "m5role" : "m5name"].focus();
     return;
   }
-  const data = new FormData();
-  for (const [key, entry] of Object.entries(GOOGLE_FORM.fields)) {
-    const el = form.elements[key];
-    if (el && entry) data.append(entry, el.value.trim());
+  const res = evaluate(true);
+  if (!res.size || !res.mix || !res.lect) {
+    show("err", !res.mix ? "Komandoje turi būti bent vienas doktorantas arba dėstytojas."
+               : !res.lect ? "Komandoje gali būti ne daugiau kaip vienas dėstytojas."
+               : "Komandoje turi būti 4 arba 5 žaidėjai.");
+    return;
   }
+
+  const team = form.elements.team.value.trim();
+  const payload = {
+    _subject: "Protmušio registracija: " + team,
+    _template: "table",
+    _replyto: form.elements.email.value.trim(),
+    _honey: form.elements._honey.value,
+    "Komanda": team,
+    "Kapitono el. paštas": form.elements.email.value.trim(),
+    "Kapitono telefonas": form.elements.phone.value.trim() || "–",
+  };
+  members().filter(m => m.name).forEach(m => {
+    payload[(m.i === 1 ? "1. Kapitonas" : m.i + ". Narys")] = m.name + " – " + ROLES[m.role];
+  });
+  payload["Pastabos"] = form.elements.note.value.trim() || "–";
+
   btn.disabled = true; btn.textContent = "Siunčiama…";
   try {
-    await fetch(GOOGLE_FORM.action, { method: "POST", mode: "no-cors", body: data });
-    form.reset();
-    show("ok", "Ačiū! Jūsų komanda užregistruota. Iki susitikimo protmušyje!");
+    const r = await fetch(FORM_ENDPOINT, {
+      method: "POST",
+      headers: { "Content-Type": "application/json", "Accept": "application/json" },
+      body: JSON.stringify(payload),
+    });
+    const data = await r.json().catch(() => ({}));
+    if (r.ok && String(data.success) === "true") {
+      form.reset(); evaluate(false);
+      show("ok", "Ačiū! Komanda „" + team + "“ užregistruota. Iki susitikimo spalio 26 d.!");
+    } else {
+      show("err", "Registracijos išsiųsti nepavyko. Bandykite vėliau arba susisiekite su organizatoriais.");
+    }
   } catch (err) {
     show("err", "Nepavyko išsiųsti. Patikrinkite interneto ryšį ir bandykite dar kartą.");
   } finally {
