@@ -448,16 +448,36 @@ form.addEventListener("submit", async (e) => {
     const data = await r.json().catch(() => ({}));
     if (r.ok && String(data.success) === "true") {
       form.reset(); evaluate(false);
-      show("ok", "Ačiū! Komanda „" + team + "“ užregistruota. Iki susitikimo spalio 26 d.!");
-    } else {
-      show("err", "Registracijos išsiųsti nepavyko. Bandykite vėliau arba susisiekite su organizatoriais.");
+      show("ok", successMsg(team));
+      btn.disabled = false; btn.textContent = "Registruotis";
+      return;
     }
-  } catch (err) {
-    show("err", "Nepavyko išsiųsti. Patikrinkite interneto ryšį ir bandykite dar kartą.");
-  } finally {
-    btn.disabled = false; btn.textContent = "Registruotis";
-  }
+  } catch (err) { /* fall through to a regular form post */ }
+  // Background request failed or was refused (e.g. form not activated yet,
+  // or a blocker stopped it): send it as a normal form post instead.
+  postClassic(payload);
 });
+
+function successMsg(team) {
+  return "Ačiū! Komanda " + (team ? "„" + team + "“ " : "") + "užregistruota. Iki susitikimo spalio 26 d.!";
+}
+function postClassic(payload) {
+  const f = document.createElement("form");
+  f.method = "POST";
+  f.action = FORM_ENDPOINT.replace("/ajax/", "/");
+  const back = location.origin + location.pathname + "?registracija=ok#registracija";
+  Object.entries({ ...payload, _next: back }).forEach(([k, v]) => {
+    const i = document.createElement("input");
+    i.type = "hidden"; i.name = k; i.value = v;
+    f.appendChild(i);
+  });
+  document.body.appendChild(f);
+  f.submit();
+}
+if (new URLSearchParams(location.search).get("registracija") === "ok") {
+  show("ok", successMsg(""));
+  history.replaceState(null, "", location.pathname + "#registracija");
+}
 </script>
 </body>
 </html>
