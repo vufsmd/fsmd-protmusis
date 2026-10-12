@@ -332,22 +332,12 @@ const EVENT = {
 };
 
 /* ======================================================================
-   REGISTRATIONS go to a Google Form (answers land in its Google Sheet;
-   turn on email notifications in the form's Responses tab).
-   Paste the form's formResponse URL and the entry IDs of its 5 questions.
-   See README.md. Until `action` is filled in, the form shows a
-   "registration opens soon" message instead of sending.
+   REGISTRATIONS are emailed via Web3Forms (web3forms.com).
+   Get a free access key at https://web3forms.com (enter the organizer's
+   email, the key arrives by email) and paste it below. Until it is set,
+   the form shows a "registration opens soon" message instead of sending.
    ====================================================================== */
-const GOOGLE_FORM = {
-  action: "",   // https://docs.google.com/forms/d/e/XXXX/formResponse
-  fields: {
-    team:    "",  // entry.NNN – Komandos pavadinimas
-    email:   "",  // entry.NNN – Kapitono el. paštas
-    phone:   "",  // entry.NNN – Kapitono telefonas
-    members: "",  // entry.NNN – Komandos nariai
-    note:    "",  // entry.NNN – Pastabos
-  },
-};
+const WEB3FORMS_KEY = "";
 
 const ROLES = { student: "Studentas (-ė)", phd: "Doktorantas (-ė)", lecturer: "Dėstytojas (-a)", other: "Kita" };
 const MAX = 5, REQUIRED = 4;
@@ -435,30 +425,40 @@ form.addEventListener("submit", async (e) => {
 
   const team = form.elements.team.value.trim();
   if (form.elements._honey.value) { form.reset(); evaluate(false); show("ok", successMsg(team)); return; }
-  if (!GOOGLE_FORM.action) {
+  if (!WEB3FORMS_KEY) {
     show("info", "Registracija atsidarys netrukus – užsukite vėliau!");
     return;
   }
-  const values = {
-    team,
-    email: form.elements.email.value.trim(),
-    phone: form.elements.phone.value.trim() || "–",
-    members: members().filter(m => m.name)
-      .map(m => (m.i === 1 ? "Kapitonas: " : m.i + ". ") + m.name + " – " + ROLES[m.role]).join("\n"),
-    note: form.elements.note.value.trim() || "–",
+  const email = form.elements.email.value.trim();
+  const payload = {
+    access_key: WEB3FORMS_KEY,
+    subject: "Protmūšio registracija: " + team,
+    from_name: "Protmūšis · VU FSMD",
+    replyto: email,
+    "Komanda": team,
+    "Kapitono el. paštas": email,
+    "Kapitono telefonas": form.elements.phone.value.trim() || "–",
   };
-  const body = new URLSearchParams();
-  for (const [key, entry] of Object.entries(GOOGLE_FORM.fields)) {
-    if (entry) body.append(entry, values[key]);
-  }
+  members().filter(m => m.name).forEach(m => {
+    payload[m.i === 1 ? "1. Kapitonas" : m.i + ". Narys"] = m.name + " – " + ROLES[m.role];
+  });
+  payload["Pastabos"] = form.elements.note.value.trim() || "–";
 
   btn.disabled = true; btn.textContent = "Siunčiama…";
   try {
-    // Google Forms does not send CORS headers, so the response is opaque;
-    // a request that reaches Google is recorded.
-    await fetch(GOOGLE_FORM.action, { method: "POST", mode: "no-cors", body });
-    form.reset(); evaluate(false);
-    show("ok", successMsg(team));
+    const r = await fetch("https://api.web3forms.com/submit", {
+      method: "POST",
+      headers: { "Content-Type": "application/json", "Accept": "application/json" },
+      body: JSON.stringify(payload),
+    });
+    const data = await r.json().catch(() => ({}));
+    if (r.ok && data.success) {
+      form.reset(); evaluate(false);
+      show("ok", successMsg(team));
+    } else {
+      console.warn("Web3Forms:", r.status, data);
+      show("err", "Registracijos išsiųsti nepavyko. Bandykite dar kartą po kelių minučių.");
+    }
   } catch (err) {
     show("err", "Nepavyko išsiųsti. Patikrinkite interneto ryšį ir bandykite dar kartą.");
   } finally {

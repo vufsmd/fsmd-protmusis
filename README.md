@@ -8,18 +8,15 @@ Open `index.html`, scroll to the `<script>` at the bottom and edit the `EVENT` o
 
 ## Registrations
 
-Registrations go to a Google Form, so every team lands in a Google Sheet and Google can email you about each one.
+Each registration is emailed to the organizers through [Web3Forms](https://web3forms.com), a free form-to-email service (no account needed).
 
-1. Create a Google Form (signed in as the organizer) with these 5 **short answer / paragraph** questions, all optional (the site already checks everything):
-   `Komandos pavadinimas` · `Kapitono el. paštas` · `Kapitono telefonas` · `Komandos nariai` (paragraph) · `Pastabos` (paragraph).
-   In **Settings → Responses**, turn **off** "Collect email addresses" and "Limit to 1 response" (no Google sign-in).
-2. **Responses** tab → ⋮ → **Get email notifications for new responses**. Optionally **Link to Sheets**.
-3. ⋮ (top right) → **Get pre-filled link**, type `1`, `2`, `3`, `4`, `5` into the questions in order, click **Get link** and copy it.
-4. Paste that link into `GOOGLE_FORM` in `index.html` (or send it to whoever maintains the site):
-   - `action` = the link with `viewform?…` replaced by `formResponse`
-   - each `entry.NNN` in the link goes to the field whose number follows it.
+1. Go to https://web3forms.com, enter the organizer's email and click **Create Access Key**. The key arrives by email.
+2. Paste it into `WEB3FORMS_KEY` in `index.html` and commit.
+3. Every registration then arrives as an email: team name, captain's email and phone, each member with their status, and notes. Replying to it replies to the captain.
 
-Until `action` is filled in, the site shows "Registracija atsidarys netrukus" instead of sending.
+The access key is meant to be public; it only lets people send messages to that one inbox.
+
+Until the key is set, the site shows "Registracija atsidarys netrukus" instead of sending.
 
 The form enforces the team rules before sending: 4–5 players, at least one doctoral student or lecturer, and no more than one lecturer.
 
