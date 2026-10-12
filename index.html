@@ -3,9 +3,9 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Protmušis · VU FSMD · Spalio 26 d.</title>
-<meta name="description" content="VU FSMD protmušis – 2026 m. spalio 26 d. Filosofinis protų mūšis 4–5 žaidėjų komandoms. Registruokitės!">
-<meta property="og:title" content="Protmušis · VU FSMD">
+<title>Protmūšis · VU FSMD · Spalio 26 d.</title>
+<meta name="description" content="VU FSMD protmūšis – 2026 m. spalio 26 d. Filosofinis protų mūšis 4–5 žaidėjų komandoms. Registruokitės!">
+<meta property="og:title" content="Protmūšis · VU FSMD">
 <meta property="og:description" content="2026 m. spalio 26 d. Filosofinis protų mūšis 4–5 žaidėjų komandoms. Registruokitės!">
 <meta property="og:image" content="fsmd-herbas.jpg">
 <link rel="icon" href="logo.svg" type="image/svg+xml">
@@ -148,7 +148,7 @@ footer .wrap{display:flex;flex-wrap:wrap;gap:12px 32px;align-items:center;justif
 
 <nav aria-label="Pagrindinė navigacija">
   <div class="wrap">
-    <a class="brand" href="#top"><img src="logo.svg" alt="" width="22" height="26"> PROTMUŠIS</a>
+    <a class="brand" href="#top"><img src="logo.svg" alt="" width="22" height="26"> PROTMŪŠIS</a>
     <ul>
       <li><a href="#info">Informacija</a></li>
       <li><a href="#eiga">Eiga</a></li>
@@ -162,7 +162,7 @@ footer .wrap{display:flex;flex-wrap:wrap;gap:12px 32px;align-items:center;justif
   <div class="wrap">
     <div>
       <span class="label">VU FSMD kviečia</span>
-      <h1>PROTMUŠIS</h1>
+      <h1>PROTMŪŠIS</h1>
       <p class="lead">Filosofinis protų mūšis: suburkite komandą su doktorantu ar dėstytoju, pasitikrinkite erudiciją ir išbandykite savo smegenis.</p>
       <ul class="facts">
         <li class="strong" data-ev="date">2026 m. spalio 26 d.</li>
@@ -180,7 +180,7 @@ footer .wrap{display:flex;flex-wrap:wrap;gap:12px 32px;align-items:center;justif
     <div class="wrap">
       <span class="label">Informacija</span>
       <h2>Kas, kada ir kur</h2>
-      <p class="intro">Protmušis – komandinis žinių žaidimas, kurį organizuoja VU filosofijos studentų draugija FSMD. Studentai žaidžia kartu su doktorantais ir dėstytojais.</p>
+      <p class="intro">Protmūšis – komandinis žinių žaidimas, kurį organizuoja VU filosofijos studentų draugija FSMD. Studentai žaidžia kartu su doktorantais ir dėstytojais.</p>
       <div class="grid4">
         <div class="card"><span class="label">Kada</span><p data-ev="dateShort">Spalio 26 d.</p><small><span data-ev="weekday">Pirmadienis</span> · <span data-ev="time">[Laikas]</span></small></div>
         <div class="card"><span class="label">Kur</span><p data-ev="place">[Vieta]</p><small data-ev="address">[Adresas]</small></div>
@@ -311,7 +311,7 @@ footer .wrap{display:flex;flex-wrap:wrap;gap:12px 32px;align-items:center;justif
 
 <footer>
   <div class="wrap">
-    <span>VU FSMD · Protmušis · <span data-ev="date">2026 m. spalio 26 d.</span></span>
+    <span>VU FSMD · Protmūšis · <span data-ev="date">2026 m. spalio 26 d.</span></span>
     <a data-ev-href="contactEmail" href="#" hidden>Susisiekti</a>
   </div>
 </footer>
@@ -332,12 +332,22 @@ const EVENT = {
 };
 
 /* ======================================================================
-   REGISTRATIONS are emailed via FormSubmit (formsubmit.co).
-   The very first submission sends an "Activate Form" email to this
-   address — click it once. FormSubmit then also sends a random alias;
-   replace the address below with it to hide the email from the source.
+   REGISTRATIONS go to a Google Form (answers land in its Google Sheet;
+   turn on email notifications in the form's Responses tab).
+   Paste the form's formResponse URL and the entry IDs of its 5 questions.
+   See README.md. Until `action` is filled in, the form shows a
+   "registration opens soon" message instead of sending.
    ====================================================================== */
-const FORM_ENDPOINT = "https://formsubmit.co/ajax/10823102b4cc6af3f1ffedba7704de77";
+const GOOGLE_FORM = {
+  action: "",   // https://docs.google.com/forms/d/e/XXXX/formResponse
+  fields: {
+    team:    "",  // entry.NNN – Komandos pavadinimas
+    email:   "",  // entry.NNN – Kapitono el. paštas
+    phone:   "",  // entry.NNN – Kapitono telefonas
+    members: "",  // entry.NNN – Komandos nariai
+    note:    "",  // entry.NNN – Pastabos
+  },
+};
 
 const ROLES = { student: "Studentas (-ė)", phd: "Doktorantas (-ė)", lecturer: "Dėstytojas (-a)", other: "Kita" };
 const MAX = 5, REQUIRED = 4;
@@ -424,59 +434,40 @@ form.addEventListener("submit", async (e) => {
   }
 
   const team = form.elements.team.value.trim();
-  const payload = {
-    _subject: "Protmušio registracija: " + team,
-    _template: "table",
-    _replyto: form.elements.email.value.trim(),
-    _honey: form.elements._honey.value,
-    "Komanda": team,
-    "Kapitono el. paštas": form.elements.email.value.trim(),
-    "Kapitono telefonas": form.elements.phone.value.trim() || "–",
+  if (form.elements._honey.value) { form.reset(); evaluate(false); show("ok", successMsg(team)); return; }
+  if (!GOOGLE_FORM.action) {
+    show("info", "Registracija atsidarys netrukus – užsukite vėliau!");
+    return;
+  }
+  const values = {
+    team,
+    email: form.elements.email.value.trim(),
+    phone: form.elements.phone.value.trim() || "–",
+    members: members().filter(m => m.name)
+      .map(m => (m.i === 1 ? "Kapitonas: " : m.i + ". ") + m.name + " – " + ROLES[m.role]).join("\n"),
+    note: form.elements.note.value.trim() || "–",
   };
-  members().filter(m => m.name).forEach(m => {
-    payload[(m.i === 1 ? "1. Kapitonas" : m.i + ". Narys")] = m.name + " – " + ROLES[m.role];
-  });
-  payload["Pastabos"] = form.elements.note.value.trim() || "–";
+  const body = new URLSearchParams();
+  for (const [key, entry] of Object.entries(GOOGLE_FORM.fields)) {
+    if (entry) body.append(entry, values[key]);
+  }
 
   btn.disabled = true; btn.textContent = "Siunčiama…";
   try {
-    const r = await fetch(FORM_ENDPOINT, {
-      method: "POST",
-      headers: { "Content-Type": "application/json", "Accept": "application/json" },
-      body: JSON.stringify(payload),
-    });
-    const data = await r.json().catch(() => ({}));
-    if (r.ok && String(data.success) === "true") {
-      form.reset(); evaluate(false);
-      show("ok", successMsg(team));
-      btn.disabled = false; btn.textContent = "Registruotis";
-      return;
-    }
-  } catch (err) { /* fall through to a regular form post */ }
-  // Background request failed or was refused (e.g. form not activated yet,
-  // or a blocker stopped it): send it as a normal form post instead.
-  postClassic(payload);
+    // Google Forms does not send CORS headers, so the response is opaque;
+    // a request that reaches Google is recorded.
+    await fetch(GOOGLE_FORM.action, { method: "POST", mode: "no-cors", body });
+    form.reset(); evaluate(false);
+    show("ok", successMsg(team));
+  } catch (err) {
+    show("err", "Nepavyko išsiųsti. Patikrinkite interneto ryšį ir bandykite dar kartą.");
+  } finally {
+    btn.disabled = false; btn.textContent = "Registruotis";
+  }
 });
 
 function successMsg(team) {
   return "Ačiū! Komanda " + (team ? "„" + team + "“ " : "") + "užregistruota. Iki susitikimo spalio 26 d.!";
-}
-function postClassic(payload) {
-  const f = document.createElement("form");
-  f.method = "POST";
-  f.action = FORM_ENDPOINT.replace("/ajax/", "/");
-  const back = location.origin + location.pathname + "?registracija=ok#registracija";
-  Object.entries({ ...payload, _next: back }).forEach(([k, v]) => {
-    const i = document.createElement("input");
-    i.type = "hidden"; i.name = k; i.value = v;
-    f.appendChild(i);
-  });
-  document.body.appendChild(f);
-  f.submit();
-}
-if (new URLSearchParams(location.search).get("registracija") === "ok") {
-  show("ok", successMsg(""));
-  history.replaceState(null, "", location.pathname + "#registracija");
 }
 </script>
 </body>
